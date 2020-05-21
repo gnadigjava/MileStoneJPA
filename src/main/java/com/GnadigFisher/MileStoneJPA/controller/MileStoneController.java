@@ -24,9 +24,9 @@ public class MileStoneController {
         this.mileStoneService = mileStoneService;
     }
 
-    @GetMapping(value = "/main")
+    @GetMapping(value = "/index")
     public String getRoot() {
-        return "/main";
+        return "/index";
     }
 
     @GetMapping(value = "/milestone_list")

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+https://www.springframework.org/schema/tx "
+       xmlns:context="https://www.springframework.org/schema/context"
+       xmlns:tx="https://www.springframework.org/schema/tx">
+
+    <!-- Enable Spring Annotation Configuration -->
+    <context:annotation-config/>
+    <!-- Scan for all of Spring components such as Spring Service -->
+    <context:component-scan base-package="com.journaldev.spring.service"></context:component-scan>
+
+    <!-- Necessary to get the entity manager injected into the factory bean -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <!-- Define Hibernate JPA Vendor Adapter -->
+    <bean id="jpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="databasePlatform"
+                  value="org.hibernate.dialect.MySQLDialect"/>
+    </bean>
+
+    <!-- Entity Manager Factory -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="hibernate.jpa"></property>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+    </bean>
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- Detect @Transactional -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

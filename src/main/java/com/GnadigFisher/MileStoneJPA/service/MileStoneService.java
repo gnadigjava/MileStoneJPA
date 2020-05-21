@@ -37,8 +37,8 @@ public class MileStoneService implements IMileStoneService{
     public void delete(Long mileStoneId) {
         Optional<MileStoneEntity> mileStoneEntity = mileStoneRepository.findById(mileStoneId);
         if(mileStoneEntity.isPresent()){
-            mileStoneEntity
-            mileStoneRepository.save(mileStoneEntity);
+            //mileStoneEntity
+            //mileStoneRepository.save(mileStoneEntity);
         }
         else{
 

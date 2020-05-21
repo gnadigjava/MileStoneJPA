@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MilestoneList</title>
+</head>
+<body>
+<br>
+
+Milestones:<br>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <td>name</td>
+        <td>date</td>
+        <td>comment</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${milestoneList == null}">
+        <td colspan="4">No milestone found :( </td>
+    </tr>
+    <tr th:each="milestone : ${milestoneList}">
+        <td><a th:text="${milestone.getName()}"></a></td>
+        <td><a th:text="${milestone.getDate()}"></a></td>
+        <td><a th:text="${milestone.getComment()}"></a></td>
+        <td><a th:href="@{/delete_milestone(gottenMilestone=${milestone})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/main">(☞ﾟヮﾟ)☞ Back to main menu ☜(ﾟヮﾟ☜)</a>
+
+</body>
+</html>

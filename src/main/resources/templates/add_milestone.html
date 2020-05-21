@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>AddMilestone</title>
+    <style>
+        .fieldError {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+New Milestone:<br><br>
+<form  action="/add_milestone" method="post" th:object="${mileStoneDTO}" > <!--Tanár Id-jét honnan kapjuk?-->
+
+    Name: <br>
+    <input type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')} ? fieldError"/><br>
+    <ul>
+        <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+    </ul>
+    Date(yyyy-mm-dd): <br>
+    <input type="text" th:field="*{date}" th:class="${#fields.hasErrors('date')} ? fieldError"/><br><br>
+
+    Comment: <br>
+    <input type="text" th:field="*{comment}" th:class="${#fields.hasErrors('comment')} ? fieldError"/><br><br>
+
+    <button type="submit" name="action" value="move">Add</button>
+</form>
+<a href="/main">(☞ﾟヮﾟ)☞ Back to main menu ☜(ﾟヮﾟ☜)</a>
+</body>
+</html>

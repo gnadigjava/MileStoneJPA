@@ -34,16 +34,20 @@ public class MileStoneService implements IMileStoneService{
     }
 
     @Override
-    public void delete(Long mileStoneId) {
+    public void delete(long mileStoneId) {
         Optional<MileStoneEntity> mileStoneEntity = mileStoneRepository.findById(mileStoneId);
+        System.out.println("it vagyok Fönök!");
         if(mileStoneEntity.isPresent()){
-            mileStoneEntity
-            mileStoneRepository.save(mileStoneEntity);
+            System.out.println("benvagyok Fönök!");
+            mileStoneEntity.get().setActive(false);
+            mileStoneRepository.save(mileStoneEntity.get());
         }
-        else{
-
-        }
-
     }
 
+    @Override
+    public Optional<MileStoneEntity> findByName(String name){
+        Optional<MileStoneEntity> entity = mileStoneRepository.findByName(name);
+
+        return entity;
+    }
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -17,14 +18,14 @@ public class MileStoneEntity {
 
     private long teacherId;
 
-    private String date;
+    private Date date;
     private String name;
     private String comment;
     private boolean active;
 
     protected MileStoneEntity(){}
 
-    public MileStoneEntity(long teacherId, String date, String name, String comment) {
+    public MileStoneEntity(long teacherId, Date date, String name, String comment) {
         this.teacherId = teacherId;
         this.date = date;
         this.name = name;

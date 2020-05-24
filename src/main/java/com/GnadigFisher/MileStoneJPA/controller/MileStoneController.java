@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 public class MileStoneController {
@@ -38,16 +39,17 @@ public class MileStoneController {
     }
 
     @RequestMapping(value = "/delete_milestone", method = RequestMethod.GET)
-    public ModelAndView deleteMilestone(@RequestParam(name="gottenMilestone")MileStoneEntity gottenMilestone) {
+    public ModelAndView deleteMilestone(@RequestParam(name="mileStoneId")String mileStoneId) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("milestone_list");
 
-        for (MileStoneEntity milestoneentity : mileStoneService.listAllActive()) {
+        mileStoneService.delete(Long.parseLong(mileStoneId));
+        /*for (MileStoneEntity milestoneentity : mileStoneService.listAllActive()) {
             if (milestoneentity.equals(gottenMilestone)){
                 milestoneentity.setActive(false);
 
             }
-        }
+        }*/
         mav.setViewName("redirect:/milestone_list");
         return mav;
     }
@@ -57,8 +59,7 @@ public class MileStoneController {
     public ModelAndView getNewMilestone(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("add_milestone");
-
-        mav.addObject("mileStoneDTO", new MileStoneDTO("2020-01-01","",""));
+        mav.addObject("mileStoneDTO", new MileStoneDTO(new Date(),"",""));
         return mav;
     }
 
@@ -72,7 +73,7 @@ public class MileStoneController {
         else {
             MileStoneEntity mileStone = new MileStoneEntity(1, mileStoneDTO.getDate(), mileStoneDTO.getName(), mileStoneDTO.getComment());
             mileStoneService.add(mileStone);
-            mav.setViewName("redirect:/main");
+            mav.setViewName("redirect:/milestone_list");
         }
         return mav;
     }

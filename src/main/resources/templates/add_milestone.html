@@ -19,13 +19,17 @@ New Milestone:<br><br>
         <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
     </ul>
     Date(yyyy-mm-dd): <br>
-    <input type="text" th:field="*{date}" th:class="${#fields.hasErrors('date')} ? fieldError"/><br><br>
+    <input type="date" th:field="*{date}" th:class="${#fields.hasErrors('date')} ? fieldError"/><br><br>
 
     Comment: <br>
     <input type="text" th:field="*{comment}" th:class="${#fields.hasErrors('comment')} ? fieldError"/><br><br>
 
-    <button type="submit" name="action" value="move">Add</button>
+    <button type="submit" name="action" value="move">➕Add</button>
 </form>
+<br>
+<a href="/milestone_list">(☞ﾟヮﾟ)☞ Back to milestone list ☜(ﾟヮﾟ☜)</a>
+<br>
+<br>
 <a href="/main">(☞ﾟヮﾟ)☞ Back to main menu ☜(ﾟヮﾟ☜)</a>
 </body>
 </html>

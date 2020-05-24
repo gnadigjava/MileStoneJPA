@@ -12,9 +12,9 @@ Milestones:<br>
 <table class="table table-bordered table-striped">
     <thead>
     <tr>
-        <td>name</td>
-        <td>date</td>
-        <td>comment</td>
+        <td>name 🏷</td>
+        <td>date 🗓</td>
+        <td>comment 📝</td>
     </tr>
     </thead>
     <tbody>
@@ -23,13 +23,15 @@ Milestones:<br>
     </tr>
     <tr th:each="milestone : ${milestoneList}">
         <td><a th:text="${milestone.getName()}"></a></td>
-        <td><a th:text="${milestone.getDate()}"></a></td>
+        <td><a th:text="${#dates.format(milestone.getDate(), 'yyyy-MM-dd')}"></a></td>
         <td><a th:text="${milestone.getComment()}"></a></td>
-        <td><a th:href="@{/delete_milestone(gottenMilestone=${milestone})}" class="btn btn-danger">Delete</a></td>
+        <td><a th:href="@{/delete_milestone(mileStoneId=${milestone.getId()})}" class="btn btn-danger">❌ Delete</a></td>
     </tr>
     </tbody>
 </table>
 
+<br>
+<a href="/add_milestone">➕ Add a new milestone 🗿♟</a>
 <br>
 <a href="/main">(☞ﾟヮﾟ)☞ Back to main menu ☜(ﾟヮﾟ☜)</a>
 
